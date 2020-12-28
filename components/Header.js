@@ -47,10 +47,6 @@ const Header = props => {
                 </svg>
               </StyledAnchor>
             </Link>
-
-            <Link href="/store">
-              <a>Store</a>
-            </Link>
           </Top>
 
           <HeaderMenu />
