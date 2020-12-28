@@ -1,14 +1,13 @@
-import { compose } from 'recompose'
-import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-
-import withCustomerAccessToken from '../containers/withCustomerAccessToken'
-import withCustomerCreate from '../containers/withCustomerCreate'
-import withCustomerAccessTokenCreate from '../containers/withCustomerAccessTokenCreate'
+import PropTypes from 'prop-types'
+import { compose } from 'recompose'
 
 import PaddedView from '../components/PaddedView'
 import UserAuth from '../components/user/UserAuth'
+import withCustomerAccessToken from '../containers/withCustomerAccessToken'
+import withCustomerAccessTokenCreate from '../containers/withCustomerAccessTokenCreate'
+import withCustomerCreate from '../containers/withCustomerCreate'
 
 const AuthPage = props => {
   const { customerAccessTokenCreate, customerAccessToken, dispatch } = props

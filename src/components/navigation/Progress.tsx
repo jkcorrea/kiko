@@ -1,6 +1,6 @@
 import React from 'react'
-import NProgress from 'nprogress'
 import Router from 'next/router'
+import NProgress from 'nprogress'
 
 Router.events.on('routeChangeStart', () => {
   NProgress.start()
@@ -8,6 +8,10 @@ Router.events.on('routeChangeStart', () => {
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-const Progress = () => <></>
+interface Props {
+  theme: any
+}
+
+const Progress = (_props: Props) => <></>
 
 export default Progress

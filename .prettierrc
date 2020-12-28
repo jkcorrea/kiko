@@ -3,5 +3,11 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": ".editorconfig",
+      "options": { "parser": "yaml" }
+    }
+  ]
 }

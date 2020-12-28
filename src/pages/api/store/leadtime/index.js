@@ -1,7 +1,8 @@
 import { URL } from 'url'
 import { createClient } from '@particular./shopify-request'
 
-const shopify = new createClient({ // eslint-disable-line
+const shopify = new createClient({
+  // eslint-disable-line
   store_name: process.env.NEXT_PUBLIC_SHOPIFY_STORE_NAME,
   client_key: process.env.NEXT_PUBLIC_SHOPIFY_API_KEY,
   client_pass: process.env.NEXT_PUBLIC_SHOPIFY_API_PASS,

@@ -1,5 +1,5 @@
-import withApollo from 'next-with-apollo'
 import ApolloClient, { InMemoryCache } from 'apollo-boost'
+import withApollo from 'next-with-apollo'
 
 export default withApollo(
   // eslint-disable-next-line
