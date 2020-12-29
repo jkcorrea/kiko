@@ -1,37 +1,13 @@
-import { compose } from 'recompose'
-import PropTypes from 'prop-types'
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect } from 'react'
+import withOpenDrawer from 'containers/withOpenDrawer'
 import Router, { withRouter } from 'next/router'
+import { compose } from 'recompose'
+import { toggleDrawer } from 'store/actions'
 import styled from 'styled-components'
-
-import { toggleDrawer } from '../lib/redux'
-
-import withOpenDrawer from '../containers/withOpenDrawer'
 
 import SvgIcon from './SvgIcon'
 
-const HeaderDrawer = props => {
-  const { children, dispatch, visible } = props
-
-  const handleCloseClick = () => {
-    dispatch(toggleDrawer(''))
-  }
-
-  useEffect(() => {
-    Router.events.on('routeChangeStart', handleCloseClick)
-  }, [])
-
-  return (
-    <HeaderDrawerBase visible={visible}>
-      {children}
-      <StyledAnchor onClick={handleCloseClick}>
-        <SvgIcon type="close" />
-      </StyledAnchor>
-    </HeaderDrawerBase>
-  )
-}
-
-const HeaderDrawerBase = styled.div`
+const HeaderDrawerBase = styled.div<{ visible: boolean }>`
   background-color: #fff;
   bottom: 0;
   display: flex;
@@ -70,6 +46,32 @@ const StyledAnchor = styled.a`
   right: 50px;
   top: 45px;
 `
+
+interface Props {
+  children: ReactNode
+  dispatch
+}
+
+const HeaderDrawer = props => {
+  const { children, dispatch, visible } = props
+
+  const handleCloseClick = () => {
+    dispatch(toggleDrawer(''))
+  }
+
+  useEffect(() => {
+    Router.events.on('routeChangeStart', handleCloseClick)
+  }, [])
+
+  return (
+    <HeaderDrawerBase visible={visible}>
+      {children}
+      <StyledAnchor onClick={handleCloseClick}>
+        <SvgIcon type="close" />
+      </StyledAnchor>
+    </HeaderDrawerBase>
+  )
+}
 
 HeaderDrawer.propTypes = {
   children: PropTypes.node.isRequired,

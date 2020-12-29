@@ -51,6 +51,6 @@ const Store: FC<Props> = ({ collection, isCollectionLoading = false }) => (
 export default compose(
   withRouter,
   withCollectionByHandle(({ router }) => router?.query?.handle || 'frontpage', {
-    filterUnavailable: true,
+    filterUnavailable: false,
   }),
 )(Store)

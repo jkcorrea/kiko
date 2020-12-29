@@ -1,33 +1,12 @@
+import React, { FC, MouseEvent } from 'react'
 import { compose, withProps } from 'recompose'
-import PropTypes from 'prop-types'
-import React from 'react'
 import styled, { withTheme } from 'styled-components'
 
-const Button = props => {
-  const {
-    bgColor,
-    children,
-    color,
-    disabled,
-    loading,
-    onClick,
-    textColor,
-  } = props
-
-  return (
-    <ButtonBase
-      bgColor={bgColor}
-      color={color}
-      disabled={disabled}
-      onClick={!loading ? onClick : undefined}
-      textColor={textColor}
-    >
-      {children}
-    </ButtonBase>
-  )
-}
-
-const ButtonBase = styled.button`
+const ButtonBase = styled.button<{
+  disabled: boolean
+  bgColor: string
+  textColor: string
+}>`
   -webkit-tap-highlight-color: transparent;
   box-shadow: ${({ disabled }) =>
     disabled ? '' : '0px 3px 3px -2px rgba(0,0,0,0.15)'};
@@ -59,23 +38,34 @@ const ButtonBase = styled.button`
   }
 `
 
-Button.defaultProps = {
-  color: '#EFEFEF',
-  textColor: '#2D2D2D',
-  bgColor: '#EFEFEF',
-  disabled: false,
-  loading: false,
+interface Props {
+  color: string
+  textColor: string
+  bgColor: string
+  disabled: boolean
+  loading: boolean
+  onClick: (e: MouseEvent) => void
 }
 
-Button.propTypes = {
-  bgColor: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  color: PropTypes.string,
-  disabled: PropTypes.bool,
-  loading: PropTypes.bool,
-  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]).isRequired,
-  textColor: PropTypes.string,
-}
+const Button: FC<Props> = ({
+  color = '#EFEFEF',
+  bgColor = '#EFEFEF',
+  textColor = '#2D2D2D',
+  children,
+  disabled,
+  loading,
+  onClick,
+}) => (
+  <ButtonBase
+    bgColor={bgColor}
+    color={color}
+    disabled={disabled}
+    onClick={!loading ? onClick : undefined}
+    textColor={textColor}
+  >
+    {children}
+  </ButtonBase>
+)
 
 export default compose(
   withTheme,
